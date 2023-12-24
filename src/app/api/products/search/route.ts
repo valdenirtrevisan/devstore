@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server'
-import data from '../products/data.json'
+import data from '../data.json'
 import { z } from 'zod'
 
 export async function GET(request: NextRequest) {
@@ -10,10 +10,6 @@ export async function GET(request: NextRequest) {
   const product = data.products.filter((product) =>
     product.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
   )
-
-  if (!product) {
-    return Response.json({ message: 'Product not found' }, { status: 404 })
-  }
 
   return Response.json(product)
 }
